@@ -31,10 +31,18 @@ function middleware2(req,res,next){
   next();
 
 }
+function middleware3(req,res,next){
+  if (req.path === '/favicon.ico') return next();
+  if (req.path === "/") {
+    console.log("i am middleware3");
+  }
+  next();
+
+}
 // either u can pass ur middleare1 function here or  can declare it globally
 // using app.use()
 // app.get("/",middleware1,standardexpresscallback);
-app.get("/",standardexpresscallback);
+app.get("/",middleware3,standardexpresscallback);
 
 // app.get("/", (req, res, next) => {
 //   res.send("Hello from express");
